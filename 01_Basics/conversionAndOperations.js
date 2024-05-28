@@ -23,3 +23,19 @@ let someNumber = 33
 let stringNumber = String(someNumber)
 console.log(typeof stringNumber);
 console.log(stringNumber);
+
+// *********************************** Operations ******************************************* //
+
+let str1 = "Hello"
+let str2 = " Shreyash"
+
+let str3 = str1 + str2;
+console.log(str3);
+
+console.log("1" + 2);       // 12
+console.log(1 + "2");       // 12
+console.log("1" + 2 + 2);   // 122
+console.log(1 + 2 + "2");   // 32
+
+// If the String is first parameter then the conversion will be in the String.
+
