@@ -30,3 +30,5 @@ if (true) {
 console.log(a);
 console.log(b);
 console.log(c);
+
+// Global Scope work differently for Window console and for Node environment
