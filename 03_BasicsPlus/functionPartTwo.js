@@ -27,8 +27,41 @@ if (true) {
     const b = 20
     var c = 30
 }
-console.log(a);
-console.log(b);
+// console.log(a);
+// console.log(b);
 console.log(c);
 
 // Global Scope work differently for Window console and for Node environment
+
+
+function one() {
+    const username = "Shreyash"
+
+    function two() {
+        const website = "LinkedIn.com"
+        console.log(username);
+    }
+
+    two()
+}
+
+one()
+
+/* A closure in JavaScript is a function that has access to the variables in its parent scope,
+  even after the parent function has completed execution */
+
+
+// --------------------------  Hoisting ------------------------
+addOne(5); // Never throws an error 
+
+function addOne(value) {
+    return value + 1
+}
+
+
+addTwo(5); // Throws an error
+
+// we can declare function like this
+const addTwo = function(num){
+    return num + 2
+}
