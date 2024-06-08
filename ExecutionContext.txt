@@ -1,0 +1,16 @@
+JavaScript Execution Context
+
+JavaScript is single threaded 
+
+1) Global Execution Context --> to which we referred as "this"
+2) Function Execution Context
+3) Eval Execution Context
+
+------------------------------------
+
+Memory Creation Phase
+Execution Phase
+
+------------------------------------
+
+For every function a new Execution Context is created with New Execution Thread
