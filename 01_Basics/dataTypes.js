@@ -6,6 +6,16 @@
 "use strict"; // Treat all JS Code as newer version 
 
 /*
+The purpose of "use strict" is to indicate that the code should be executed in "strict mode".
+With strict mode, you can not, for example, use undeclared variables.
+
+As an example, in normal JavaScript, mistyping a variable name creates a new global variable. 
+In strict mode, this will throw an error, making it impossible to accidentally create a global variable.
+
+Deleting a variable (or object) is not allowed.
+*/
+
+/*
 number
 bigInt
 string
