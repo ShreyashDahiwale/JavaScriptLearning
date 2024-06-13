@@ -22,7 +22,7 @@ myNums.forEach(element => {
 
 console.log(newNums);
 
-
+// ** Filter returns the complete value of Object at that particular Index. ** //  
 
 const books = [
     { title: 'Book One', genre: 'Fiction', publish: 1981, edition: 2004 },
