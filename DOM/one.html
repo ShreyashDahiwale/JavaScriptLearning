@@ -21,6 +21,8 @@
 </html>
 
 <!-- document.getElementById('firstHeading').innerHTML = "<h1>Chai Aur Code</h1>" -->
+console.log(window)
+console.log(window.document)
 document.getElementById('firstHeading').id
 document.getElementById('firstHeading').className
 document.getElementById('firstHeading').getAttribute('id')
@@ -34,3 +36,39 @@ document.getElementById('firstHeading').setAttribute('class','test heading')
 document.querySelector('h1') // Will return First h2
 document.querySelector('.heading') // Will return First h2
 document.querySelector('#title') // Will return First h2
+
+console.log(document.baseURI)
+console.log(document.location)
+
+
+
+
+
+                                      Document Object Model
+
+
+
+
+
+                                            window
+                                               |
+                                               |
+                                               |
+                                            document
+                                               |
+                                               |
+                                               |
+                                              HTML
+
+
+                            Head                                Body 
+
+                
+                        
+            Title               Meta                            Div   -- attribute
+                                                                
+
+                                            attribute  --  h1               p
+                                                            |
+                                                            |
+                                                         text node
