@@ -1,0 +1,4 @@
+JavaScript is a Single Threaded and Synchronous language. (Default Behaviour)
+
+Execution Context -
+    Execute one line of code at a time.
