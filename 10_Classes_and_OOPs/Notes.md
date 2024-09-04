@@ -24,3 +24,11 @@ Abstraction (Hiding Details)
 Encapsulation (Encapsulation is a way to restrict access to some components of an object, such as data members and methods)
 Inheritance 
 Polymorphism (One function many forms)
+
+
+## JavaScript has a Prototypial Behaviour 
+In JavaScript, everything is object. Array, String, Function
+Object's prototype is null in the end.
+
+array ---> object ----> null
+string ---> object ----> null
