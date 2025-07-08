@@ -12,3 +12,8 @@ var b =100;     // this variable is attached to the global execution context
 
 
 // console.log(window.b);
+
+
+// Syntax Error
+// Reference Error
+// Type Error
