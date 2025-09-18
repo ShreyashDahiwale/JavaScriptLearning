@@ -14,7 +14,7 @@ function x(y){
 
 // y() is a callback function
 x(function y(){
-    console.log('y');
+    window.console.log('y');
 })
 
 
