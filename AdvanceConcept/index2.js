@@ -18,3 +18,23 @@ location
 
 // Callback Queue
 // Event Loop -> The Job of this Event Loop is to check the Callback Queue and put this function into the Call Stack (Act as a gatekeeper)
+
+// Micro Task Queue (with Higher Priority then Callback Queue)
+// All the network calls are register here (all the callback function which comes from promises)
+// Promises
+// Mutation Observer ->  The MutationObserver interface provides the ability to watch for changes being made to the DOM tree
+
+
+console.log('Start');
+
+setTimeout(() => {
+    console.log('cbT');
+},5000);
+
+fetch('https://api.netflix.com')
+.then(function cbF(){
+    console.log('cbF Netflix');
+    
+});
+
+console.log('End');
