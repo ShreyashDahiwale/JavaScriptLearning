@@ -41,3 +41,13 @@
 - The main differences between the server-side and client-side processes is the amount of control and access to the resources that each has.
 - Server side processes has access to the server's resources such as CPU, Databases, memory, storage, or other servers. 
 - Client-side processes have only access to the User's device, such as CPU, storage, or memory.
+
+-----------------------------------------------------------------
+---------------------------------------------------------------------
+
+https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
+
+6. **Main Features of Node.js**
+- ***Asynchronous and Non-blocking I/O***: Node.js uses event-driven, non-blocking I/O model, allowing it to handle multiple concurrent requests without waiting for previous opertion to complete. This enhances performance and responsiveness. 
+
+- ***Single-Threaded Event Loop***: 
