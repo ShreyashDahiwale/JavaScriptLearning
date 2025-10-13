@@ -2,7 +2,7 @@
 // A function which takes a function as a argument or return a function from it is Higher Order Funtion
 
 function x() {
-    console.log("Namaster");
+    console.log("Namaste");
 } // callback function
 
 function y(x) {

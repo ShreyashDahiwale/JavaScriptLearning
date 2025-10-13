@@ -2,7 +2,7 @@ console.log(b);  // undefined
 console.log(a);  // throws an error Cannot access 'a' before initialization
 // Here, "a" was hoisted but memory is allocated in different space 
 // and it is not initailized. This is called Temporal Dead Zone
-// Temporal Dead Zone ends when the value is assigned to variable "a" by thecode
+// Temporal Dead Zone ends when the value is assigned to variable "a" by the code
 // And whenever we access the that variable in the Temporal Dead Zone then we get Reference Error
 
 console.log(x); // It gives x is not defined
