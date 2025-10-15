@@ -1,0 +1,15 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Nodejs Learning Repo",
+  "main": "index1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shreyash Dahiwale",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}

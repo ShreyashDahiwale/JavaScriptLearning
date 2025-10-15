@@ -3,6 +3,8 @@
 - Node.js is the cross-platform JavaScript Runtime Environment which helps us to run the JavaScript outside of the Web Browser. 
 (Cross-Platform: It is designed to operate on multiple systems).
 - It is built on Chrome's V8 JavaScript Engine.
+- Each browser has its own JavaScript Engine.
+- Earlier JavaScript is executable only in browsers because only they have JavaScript Engine.
 - It enhances the JS capabilities to use for building server-side applications.
 - V8 Engine: This engine compiles JavaScript code into machine code, allowing for efficient and fast execution.
 
@@ -107,6 +109,7 @@ https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 
 --------------------------------------------------------------------
 --------------------------------------------------------------------
+
 13. ***HTTP Codes***
 - 200 - OK
 - 201 - Created
@@ -115,3 +118,11 @@ https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 - 403 - Forbidden
 - 404 - Not Found
 - 500 - Internal Server Error
+
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+
+14. **What is MicroTask and MacroTask?**
+
+--------------------------------------------------------------------
+--------------------------------------------------------------------
