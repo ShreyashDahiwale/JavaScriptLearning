@@ -37,7 +37,7 @@ After function call: { name: "John" }
 -------------------------------------------------------------------
 -------------------------------------------------------------------
 
-2. ** In JavaScript, how do you turn an Object into an Array []?**
+2. **In JavaScript, how do you turn an Object into an Array []?**
 ```JavaScript
 let obj = { id: "1", name: "user22", age: "26", work: "programmer" };
 
