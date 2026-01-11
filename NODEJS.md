@@ -123,7 +123,61 @@ https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 --------------------------------------------------------------------
 
 14. **What is MicroTask and MacroTask?**
+- *Event Loop*: An Event Loop in JavaScript is said to be a constantly running process that keeps a tab on the call stack. Its main function is to check whether the call stack is empty or not. If the call stack turns out to be empty, the event loop proceeds to execute all the callbacks waiting in the task queue. Inside the task queue, the tasks are broadly classified into two categories, namely micro-tasks and macro-tasks.
+- The main difference between Micro Task and Macro Task Queue is their priority. 
+- *Micro Task* with Higher Priority.
+- The *Micro Task* queue contains the callbacks of operations that are considered more urgent or important, such as promises and mutation observers APIs.
+- The *Macro Task* queue contains the callbacks of operations that are less urgent such as timers, I/O events, and user interface events.
+```javascript
+console.log("Start");
 
+setTimeout(function() {
+  console.log("Timeout");
+}, 0);
+
+Promise.resolve().then(function() {
+  console.log("Promise"); // microTask!
+});
+
+console.log("End");
+
+// Start -> End -> Promise -> Timeout
+/* setTimeout is placed in Macro Task Queue
+Promise.resolve is placed in Micro Task Queue
+*/
+
+setTimeout(() => console.log("timeout"), 0);
+
+fetch("/api")
+  .then(() => console.log("fetch"));
+
+Promise.resolve().then(() => console.log("promise"));
+// promise -> fetch -> timeout
+```
+- Understanding the Mircotask and Macrotask Queue is important because it can lead to the blocking the event loop by creating too many microtasks or long-running microtasks. This can cause performance issues and delay other important tasks.
+- Creating race conditions or unexpected results by relying on the order of execution of different types of tasks. 
+    - For example, if you use setTimeout to schedule some code after a promise, you cannot guarantee that the promise will resolve before the timeout.
+- To avoid these mistakes some best practices are:
+    - Use promises or async/await instead of callbacks whenever possible.
+    - Use *queueMicrotask* instead of setTimeout with a very small delay. These methods are more reliable and efficient than setTimeout, as they schedule a microtask without any delay.
+- *Micro-Task (Priority)*
+    - Promise callbacks (.then, .catch, .finally).
+    - Mutation Observer API
+    - process.nextTick
+    - queueMicrotask function
+    - await expressions in async functions
+- *Macro-Task*
+    - setTimeout and setInterval callbacks
+    - DOM manipulation and rendering
+    - I/O operations (file reading/writing)
+    - Network requests (fetch)
+    - Event Handlers (addEventListners)
+- The network response is handled as a macro-task, and Promise .then() callbacks are scheduled as micro-tasks.
+    - Why Macro-task?
+    Because:
+    Network I/O is external
+    Completion time is unpredictable
+    It must wait for the next event loop tick
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 
