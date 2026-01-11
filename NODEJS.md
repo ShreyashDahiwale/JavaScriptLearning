@@ -58,7 +58,7 @@ https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 ---------------------------------------------------
 ------------------------------------------------------
 
-7. ** What is Single Threaded Programming?**
+7. **What is Single Threaded Programming?**
 - Single Threaded Programming Languages execute One Task at a Time, in a sequential order, or a single thread of execution.
 - In JS, a call stack manages the order of execution of functions in a single-threaded environment; functions are added when called and removed when executed. 
 - This can lead to the blocking entire thread if some task is taking too longer to execute, i.e. time consuming, such as waiting for file to load or a network response. 
@@ -126,3 +126,106 @@ https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 
 --------------------------------------------------------------------
 --------------------------------------------------------------------
+
+15. **If Node.js is single threaded then how it handles concurrency?**
+- The reason why node js is popular despite being single-threaded is the asynchronous nature that makes it possible to handle concurrency and perform multiple I/O operations at the same time. 
+- Node.js uses an event loop to maintain concurrency and perform non-blocking I/O operations.
+- As soon as Node js starts, it initializes an event loop. The event loop works on a queue (which is called an event queue) and performs tasks in FIFO(First In First Out) order.
+- It executes a task only when there is no ongoing task in the call stack.
+- The call stack works in LIFO(Last In First Out) order. The event loop continuously checks the call stack to check if there is any task that needs to be run. Now whenever the event loop finds any function, it adds it to the stack and runs in order.
+- The call stack executes synchronous code first.
+- Any asynchronous operations (setTimeout, fs.readFile, network requests) are delegated to libuv.
+- Node.js uses a special C library called libuv to handle asynchronous operations. This library manages a thread pool that offloads heavy tasks (like file I/O, database operations, or network requests) that would otherwise block the event loop. The thread pool contains several threads that perform tasks like:
+        File system I/O (fs.readFile)
+        Network requests (HTTP, TCP, DNS)
+        Timers (setTimeout, setInterval)
+        Compression and cryptographic tasks
+- Once the thread pool completes its tasks, it sends callbacks to the event queue. The event loop processes these callbacks, but only when the call stack is empty (i.e., when no synchronous code is currently executing).
+```javascript
+function func(){
+    console.log("Statement 1 inside function");
+    setTimeout(function(){
+        console.log("Statement 2 inside function");
+    },2000);
+    console.log("Statement 3 inside function");
+    
+}
+console.log("Statement outside function");
+func();
+```
+
+-------------------------------------------------------
+-------------------------------------------------------
+16. **How do you structure a scalable Express application?**
+    * Folder Structure (Modular/Layered Approach)
+    - src/: Root for your source code.
+    - routes/: Defines API endpoints, often grouped by feature (e.g., users.js, products.js).
+    - controllers/: Handles request/response logic, calls services, and orchestrates actions.
+    - services/: Contains core business logic and reusable functions (e.g., database interactions, external API calls).
+    - models/: Defines data structures (e.g., Mongoose schemas).
+    - middlewares/: Custom functions for tasks like authentication, logging, validation.
+    - config/: Application settings, database connections, etc..
+
+----------------------------------------------------------
+----------------------------------------------------------
+17. **Difference between Promise and Async/Await in Node?**
+- Both Promises and Async/Await handle asynchronous operations in Node.js, but Async/Await offers a more readable, synchronous-like approach compared to Promises. 
+- Promises are useful for chaining .then() and .catch(), while Async/Await simplifies error handling and improves code readability.
+- A Promise is an object representing the eventual completion (or failure) of an asynchronous operation. It provides a cleaner way to handle asynchronous operations compared to traditional callback functions, helping to avoid "callback hell."
+- Promise has three states. 
+    - Pending: Initial State, neither fulfilled nor rejected. 
+    - Fulfilled: Operation completed successfully.
+    - Rejected: Operation Failed
+- Methods: then(), catch(), finally()
+```javascript
+const promise = new Promise(function (resolve, reject) {
+    const string1 = "geeksforgeeks";
+    const string2 = "geeksforgeeks";
+    if (string1 === string2) {
+        resolve();
+    } else {
+        reject();
+    }
+});
+
+promise
+    .then(function () {
+        console.log("Promise resolved successfully");
+    })
+    .catch(function () {
+        console.log("Promise is rejected");
+    });
+```
+- Async/Await is a simpler way to work with Promises in javascript. 
+- The async keyword is used to create a function that returns a Promise, while the await keyword pauses the function's execution until the Promise is done.
+- Async Functions: An async function returns a Promise. It allows the use of the await keyword inside it.
+- Await: The await keyword pauses the execution of the async function until the Promise is resolved or rejected.
+- Methods: try, catch, finally
+```javascript
+const helperPromise = function () {
+    const promise = new Promise(function (resolve, reject) {
+        const x = "geeksforgeeks";
+        const y = "geeksforgeeks";
+        if (x === y) {
+            resolve("Strings are same");
+        } else {
+            reject("Strings are not same");
+        }
+    });
+
+    return promise;
+};
+
+async function demoPromise() {
+    try {
+        let message = await helperPromise();
+        console.log(message);
+    } catch (error) {
+        console.log("Error: " + error);
+    }
+}
+
+demoPromise();
+```
+----------------------------------------------------
+----------------------------------------------------
