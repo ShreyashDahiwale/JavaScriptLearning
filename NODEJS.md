@@ -285,4 +285,14 @@ demoPromise();
 ----------------------------------------------------
 18. **Explain idempotency in APIs**
 - Idempotency in APIs is the property where multiple identical requests have the same effect on the server state as a single request.
-- Idempotency is typically handled through careful design patterns and the use of middleware or unique identifiers (UUID) to track and prevent duplicate operations
+- Idempotency is typically handled through careful design patterns and the use of middleware or unique identifiers (UUID) to track and prevent duplicate operations.
+
+------------------------------------------------------
+------------------------------------------------------
+All types of statuscodes
+JavaScript functionality
+Aggregation and Pipelines in MongoDB
+When to use Mongo and when to use MySQL
+state and props 
+lifting state up in React
+Proper introduction in Interview
