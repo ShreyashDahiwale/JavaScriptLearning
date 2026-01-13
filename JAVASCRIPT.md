@@ -74,3 +74,33 @@ x = 23;
 x = 23; // Gives an error since 'x' is not declared
 var x; 
 ```
+---------------------------------------------------
+---------------------------------------------------
+4. **Callback Hell**
+```javascript
+const cart = ["shoes", "pants","kurta"];
+
+api.createOrder();
+
+api.proceedToPayment();
+
+api.showOrderSummary();
+
+api.updateWallet();
+
+api.createOrder(cart, function () {
+
+  api.proceedToPayment(function() {
+    
+    api.showOrderSummary(function() {
+
+      api.updateWallet();
+    });
+  });
+});
+
+```
+- *Inversion of Control*: We pass the control of our code to some other code.
+- Issues with Callbacks
+  - Callback Hell
+  - Inversion of Control
