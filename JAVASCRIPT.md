@@ -104,3 +104,29 @@ api.createOrder(cart, function () {
 - Issues with Callbacks
   - Callback Hell
   - Inversion of Control
+
+------------------------------------------------
+------------------------------------------------
+5. **Promises**
+```javascript
+const cart = ["shoes","pants","kurtas"];
+
+createOrder(cart); //orderId
+
+proceedToPayment(orderId); 
+// These two are asynchronous and dependent on each other
+
+const promise = createOrder(cart);
+// This will return us a Promise and Promise is nothing but an Empty Object
+// The program will go on executing
+// after the Promse resolve the empty object got filled automatically
+
+promise.then(function (orderId) {
+  proceedToPayment(orderId)
+});
+
+// promise gives us the gurantee that it will call the callback function
+// PromiseState
+// PromiseResult
+```
+Promises are immutable and resolved just once.
