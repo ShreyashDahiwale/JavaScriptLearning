@@ -150,3 +150,71 @@ promise.then(function (orderId) {
 - Promises are immutable and resolved just once.
 - A container for a future value. OR
 - A Promise is an object representing the eventual completion or failure of an asynchronous operation.
+
+--------------------------------------------------
+----------------------------------------------
+6. **Promise Deep Dive**
+```javascript
+const cart = ["shoes","pants","kurtas"];
+
+const promise = createOrder(cart);
+
+promise.then(function(orderId){
+  console.log(orderId);
+  return orderId;
+})
+.then(function(){
+  return proceedToPayment(orderId);
+})
+.then(function(paymentInfo){
+  console.log(paymentInfo)
+})
+.catch((err)=> {
+  console.log(err.message);
+});
+
+// resolve and reject are the functions given by JavaScript 
+// Producer
+function createOrder(cart) {
+  const pr = new Promise(function(resolve, reject){
+    // createOrder
+    // validateCart
+    // orderId
+    if(!validateCart(cart)){
+      const err = new Error("Cart is Not Valid");
+      reject(err);
+    }
+    // logic for createOrder
+    const orderId = "12323";
+    if(orderId){
+      setTimeOut(function(){
+        resolve(orderId);
+      },5000)
+    }
+
+  });
+
+  return pr;
+}
+function validateCart(cart){
+  return true;
+}
+
+promise.then(function(orderId){
+  console.log(orderId);
+  return orderId;
+})
+.then(function(){
+  return proceedToPayment(orderId);
+})
+.catch((err)=> {
+  console.log(err.message);
+})
+.then(function(paymentInfo){
+  console.log(paymentInfo)
+})
+.then(function() {
+  console.log(`No matter what happens, I will definietely be called.`)
+})
+
+```
