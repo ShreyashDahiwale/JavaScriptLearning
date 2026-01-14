@@ -111,7 +111,13 @@ api.createOrder(cart, function () {
 ```javascript
 const cart = ["shoes","pants","kurtas"];
 
-createOrder(cart); //orderId
+createOrder(cart, function (orderId) {
+  proceedToPayment(orderId, function (paymentInfo){
+    showOrderSummary(paymentInfo, function(){
+      updateWalletBalance();
+    })
+  });
+}); //orderId
 
 proceedToPayment(orderId); 
 // These two are asynchronous and dependent on each other
@@ -122,11 +128,25 @@ const promise = createOrder(cart);
 // after the Promse resolve the empty object got filled automatically
 
 promise.then(function (orderId) {
-  proceedToPayment(orderId)
+  proceedToPayment(orderId);
 });
 
+// Pending , Fullfill , Rejected
 // promise gives us the gurantee that it will call the callback function
 // PromiseState
 // PromiseResult
+promise.then(function (orderId) {
+  return proceedToPayment(orderId);
+})
+.then(function(paymentInfo){
+  return showOrderSummary(paymentInfo);
+})
+.then(function (paymentInfo) {
+  return updateWalletBalance(paymentInfo);
+})
+
+// We always have to return the promise when we are chaining it.
 ```
-Promises are immutable and resolved just once.
+- Promises are immutable and resolved just once.
+- A container for a future value. OR
+- A Promise is an object representing the eventual completion or failure of an asynchronous operation.
