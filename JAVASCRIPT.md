@@ -362,3 +362,14 @@ async function handlePromise2() {
   // 
 }
 ```
+- How the fetch() works?
+  - fetch gives us a Promise.
+  - On resolved it gives us a response object which is a readable string
+  - response.json(). json() is also a promise.
+
+```javascript
+  async function handlePromise(){
+    const data = await fetch(api);
+    const jsonsValue = await data.json();
+  }
+```
