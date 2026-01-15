@@ -217,4 +217,85 @@ promise.then(function(orderId){
   console.log(`No matter what happens, I will definietely be called.`)
 })
 
+// catch will handle all the errors of the above promises
+```
+
+--------------------------------------------------
+--------------------------------------------------
+7. **Promise APIs**
+- Promise.all()
+  - It is used to handle multiple APIs together.
+  - We have to pass the iterable i.e. Array of Promises.
+  - Result of settled promises is an Array of each promise result.
+  - As soon as any of the Promise get rejected, then Promise.all throws an error immediately.
+
+- Promise.allSettled([p1,p2,p3])
+  - This reacts differently in case of failure of any promise.
+  - Wait for all Promise to Settle.
+  - Irrespective of success or failure it will always give an array with respective Failure and success.
+  - Result will always be an array.
+
+- Promise.race([p1,p2,p3])
+  - As soon as one of the Promise is settled, it will give the value of that Promise.
+  - Return the value of first settled Promise.
+
+- Promise.any([p1,p2,p3])
+  - It will wait for the first Promise to get Successful/Fulfilled.
+  - If all the Promises fails, then it will return an Aggregate Error.
+  - AggregateError = [err1, err2, err3].
+
+- Promise.allSettled() is the safest option.
+- resolve == success == fulfilled
+- reject == failure == rejected
+
+```javascript
+const p1 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("P1 Success", 3000));
+});
+const p2 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("p2 Success", 1000));
+});
+const p3 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("p3 Success", 2000));
+});
+
+Promise.all([p1, p2, p3])
+.then( res => {
+  console.log(res);
+})
+.catch((err) => {
+  console.log(err);
+  console.error(err);
+});
+
+Promise.allSettled([p1, p2, p3])
+.then( res => {
+  console.log(res);
+})
+.catch((err) => {
+  console.log(err);
+  console.error(err);
+});
+
+Promise.race([p1, p2, p3])
+.then( res => {
+  console.log(res);
+})
+.catch((err) => {
+  console.log(err);
+  console.error(err);
+
+  // To handle aggregate errors
+  console.log(err.errors);
+});
+
+Promise.any([p1, p2, p3])
+.then( res => {
+  console.log(res);
+})
+.catch((err) => {
+  console.log(err);
+  // To handle aggregate errors
+  console.log(err.errors);
+});
 ```
