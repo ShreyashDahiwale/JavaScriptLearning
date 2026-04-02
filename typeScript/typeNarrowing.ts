@@ -75,6 +75,12 @@ processChaiOrder(gingerOrder); // Output: Processing order for 3 Ginger Chai
 
 
 
+function isStringArray(arr: unknown): arr is string[] {
+    return Array.isArray(arr) && arr.every(item => typeof item === 'string');
+}
+
+const mixedArray: unknown = ['Hello', 'World', 42];
+
 
 // npm install -g typescript
 // tsc typeNarrowing.ts
