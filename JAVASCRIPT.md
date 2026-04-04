@@ -373,3 +373,5 @@ async function handlePromise2() {
     const jsonsValue = await data.json();
   }
 ```
+9. **What is call, bind and apply in JavaScript?**
+- 
