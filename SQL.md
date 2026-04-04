@@ -168,3 +168,18 @@ END;
 24. **How to find common records from two tables?**
 - Use either INTERSECT or INNER JOIN to retrieve records that exist in both tables based on a matching column.  
 
+25. **How to check and handle the NULL values?**
+- using IS NULL 
+- IFNULL(column_name, 'NA')
+- COALESCE(column1, column2, column3, 'Las') --> uses first non-NULL value
+
+26. **Different Count() operations.**
+- COUNT(*) includes rows with NULL Values also.
+- COUNT(column_name) counts only non-NULL values.
+- COUNT(DISTINCT column_name) counts unique non-NULL values
+- COUNT(1) count 1 for each row just work same as COUNT(*)
+
+27. **How NULLIF() works?**
+- NULLIF(expression1, expression2)
+- This function returns true if two specified expressions are equal, otherwise, it returns the first expression.
+
