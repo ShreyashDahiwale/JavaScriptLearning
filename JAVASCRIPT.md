@@ -373,5 +373,44 @@ async function handlePromise2() {
     const jsonsValue = await data.json();
   }
 ```
+--------------------------------------------------
+--------------------------------------------------
 9. **What is call, bind and apply in JavaScript?**
 - 
+
+--------------------------------------------------
+--------------------------------------------------
+10. **Explain the Closures in JavaScript.**
+- A Closure is a function that remembers and accesses the variables from its outer function scope from where it is called even after the execution of Outer function is finished. 
+- Closures are rely on lexical scoping, which means a function's scope is determined by where it is defined, not where it is executed, allows inner function to access variables from their outer function.
+- Excessive use of closures may retain unnecessary references to variables, causing memory issues.
+```javascript
+  for (var i = 0; i < 6; i++) {
+    setTimeout(() => {
+      console.log(i)
+    }, 100)
+  }
+
+  // output for above code is -> 666666
+```
+- The reason for the above output is, when JS sees the async code (in this case setTimeout) first, it executes all the synchronous code. And for each iteration, setTimeout is sent to callback queue. 
+- When finally all the synchronous code is executed, it's time to execute the functions from callback queue. And that time the value of varialbe i is 6. (this is because var declarations are in global scope)
+```javascript
+    for (var i = 0; i < 6; i++) {
+      var innerFunction = (index) => {
+        setTimeout(() => {
+          console.log(index)
+        }, 100)
+      }
+      innerFunction(i)
+    }
+
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        console.log(i)
+      }, 100)
+    }
+  // both will give the output -> 0 1 2 3 4 5
+```
+- We're passing i as parameter to innerFunction(index). Each call creates the new independent varialble
+- Same for let declaration it creates new variable.
