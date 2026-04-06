@@ -289,6 +289,107 @@ demoPromise();
 
 ------------------------------------------------------
 ------------------------------------------------------
+
+19. **Thread *vs* Process**
+- When we run a program on our computer, we start something called process, and it is an instance of a running program. 
+- Each process should have at least one thread which is called as Main Thread. And it does the main job because program instruction (our code) is there and it is ready to be executed by CPU.
+- Single process can have multiple threads inside of it. 
+- Each process has its own memory address space. One process cannot corrupt the memory space of another process (There are some exception).
+- In contrast, all the threads in a single process share a common memory space of the process. 
+- That's why misbehaving the thread might bring down the entire process. 
+- Let's take an example that one thread is deleting something and other thread is needed that memory of the process. This might bring down the entire process. 
+- We also need to manage the race conditions and locking. (Multi-threading)
+
+- Chrome allocates one process for each tab. So, if one tab has any problem, it doesn't affect other tabs. 
+- When we open a Chrome, OS creates the one process which is parent process. And when we open a new tab, the parent process creates new child process. Also, childern process can create another child process. 
+- This processes can exchange and share the data with each other through something called interprocess communication (IPC).
+- Each process is represented in OS by a Process Control Block (PCB) that shows some properties. (ProcessID, Process State, Program Counter, Memory management information, I/O status information)
+
+
+20. **what is libuv in Node.js?**
+- libuv is a multiplatform C library that provides support for asynchronous I/O operations on event loops.
+- After libuv, as a developer, we don't need to deal with multi-threading anymore. 
+```javascript
+    console.log('Hi from the main');
+    const callback = () => {
+        console.log('Hi From call back');
+    }
+    setTimeout(callback, 1000)
+    console.log('Hi Log after the setTimeout');
+    for (var i = 0; i<= 99999999 ;i++) {}
+```
+- In above code, let's suppose for loop takes 2000ms to execute. libuv checks the first line of code and as it is synch it executes it in JS engine. The next setTimeout function is async then libuv know that callback function should not pass directly to JS engine as Main thread have to wait 1000 ms to execute. So, it go to next line and check and so on. Once, the sync code is executed completely then it checks that 1000 ms is passed or not and then provide it to JS engine. 
+- But in this case, setTimeout has to be executed after 1000ms but due to for loop it takes 2000 ms to execute. So, we got latency here which is called *Event Loop lag*. That is why people say, as a developer we need to pay attention to not write codes that blocks the Main Thread!
+
+- Let's go for another CPU intensive task.
+```javascript
+    const crypto = require('crypto');
+
+    const now = new Date()
+
+    const makeHash = (index) => {
+    const callback = (err, derivedKey) => {
+            console.log(`${index} Hash is ready after ${new Date() - now} ms`);
+        }
+        crypto.pbkdf2('secret', 'salt', 100000, 64, 'sha512', callback);
+    }
+
+    makeHash(1);
+    makeHash(2);
+    makeHash(3);
+    makeHash(4);
+    makeHash(5);
+    // OutPut:
+    /*
+        2 Hash is ready after 54 ms
+        4 Hash is ready after 57 ms
+        1 Hash is ready after 57 ms
+        3 Hash is ready after 57 ms
+        5 Hash is ready after 105 ms
+    */
+```
+- Why any four has executed in same amount of time and one is with greater?
+- LibUV has a thread pool that has four threads inside of it that are called worker threads. 
+- LibUV known the function which takes time, instead of running it on main thread, it assigns the worker thread from the thread pool to handle that function, and then event loop continues working. So the main thread is not blocked. 
+- Once the worker thread is done with the execution, it puts the result into a queue in event loop. Now, event loop passes this function to JS engine (V8) to execute, which is running on Main thread. 
+
+
+
+- Let's go through some of the concepts first:
+    - Synchronous: Code execution line by line one after another.
+    - Asynchronous: We can process more than one thing at the same time. 
+    ```javascript
+        const fn = function () {
+            console.log('FN');
+        }
+        const interval = 100;
+        setTimeout(fn, interval);
+        console.log('Main');
+        /*
+            The above code will return:
+            Main 
+            FN
+        */
+    ```
+    - And the following code will still give the same result as above:
+    ```javascript
+        const fn = function () {
+            console.log('FN');
+        }
+        const interval = 0;
+        setTimeout(fn, interval);
+        console.log('Main');
+        for(let i=0; i<666666; i++) {}
+        /*
+            The above code will return:
+            Main 
+            FN
+        */
+    ```
+    - setTimeout is function which JS engine knows that is asynchronous so it does not execute the callback immediately. First, it checks that any other line is there to interpret, if present then it will execute those lines first. Once, it finds that no other lines are there to execute then it will process the setTimeout callback. 
+    - This is very important to note that this interval does not give the gurantee which the callback runs exactly at that time because js is a single threaded and we don't know how much time the synchronous task will take to execute.
+-------------------------------------------------------
+-------------------------------------------------------
 All types of statuscodes
 JavaScript functionality
 Aggregation and Pipelines in MongoDB

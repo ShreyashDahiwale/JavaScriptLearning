@@ -383,6 +383,7 @@ async function handlePromise2() {
 10. **Explain the Closures in JavaScript.**
 - A Closure is a function that remembers and accesses the variables from its outer function scope from where it is called even after the execution of Outer function is finished. 
 - Closures are rely on lexical scoping, which means a function's scope is determined by where it is defined, not where it is executed, allows inner function to access variables from their outer function.
+- A closure is the combination of a function bundled(enclosed) together with its lexical environment within which that function was declared. i.e, It is an inner function that has access to the outer or enclosing function’s variables, functions and other data even after the outer function has finished its execution. 
 - Excessive use of closures may retain unnecessary references to variables, causing memory issues.
 ```javascript
   for (var i = 0; i < 6; i++) {
@@ -414,3 +415,36 @@ async function handlePromise2() {
 ```
 - We're passing i as parameter to innerFunction(index). Each call creates the new independent varialble
 - Same for let declaration it creates new variable.
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+11. **What is strict mode in JavaScript?**
+- JavaScript 'use strict' directive is used for strict parsing and error-handling of our code or script. 
+- It catches common bugs and errors. 
+    ```javascript
+      pi = 3.14
+      console.log(pi);
+      
+      // This will work
+    ```
+    ```javascript
+      'use strict'
+      pi = 3.14
+      console.log(pi);
+
+      // This will throw the error.
+    ```
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+# type of Array is also a object in javascript
+# typeof null is object.
+# typeof undefined is undefined.
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+12. **What is difference between Window and Document?**
+
+    | window                                            | document                                               |
+    |---------------------------------------------------|--------------------------------------------------------|
+    | It is the root level element in any web page      | It is the direct child of the window object. This is also known as Document Object Model (DOM) |
+    | By default window object is available implicitly in the page                  | You can access it via window.document or document.                                             |
+    | It has methods like alert(), confirm() and properties like document, location | It provides methods like getElementById, getElementsByTagName, createElement etc               |
