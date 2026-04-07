@@ -236,3 +236,26 @@ END;
             CLOSE emp_cursor;
         END;
     ```
+
+29. **What Bulk Collect?**
+- Cursor: process data row by row
+    - Fetches one row at a time
+    - Context switch between SQL and PL/SQL for each row. (Problem is many context switches)
+- BULK COLLECT: process data in batches. 
+    - Fetches multiple rows at once into collections
+    - Reduces context switching
+    - We can use this to Insert bulk data
+    ```sql
+        DECLARE
+        TYPE emp_table IS TABLE OF employees%ROWTYPE;
+        v_emps emp_table;
+
+        BEGIN
+        SELECT * BULK COLLECT INTO v_emps
+        FROM employees;
+
+        FOR i IN 1 .. v_emps.COUNT LOOP
+            DBMS_OUTPUT.PUT_LINE(v_emps(i).name || ' - ' || v_emps(i).salary);
+        END LOOP;
+        END;
+    ```
