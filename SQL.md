@@ -320,6 +320,10 @@ END;
 - You have to call the Procedure. 
 
 34. **Calling a Store Procedure.**
+- You can add a savepoint here.
+- If you want to rollback then you can rollback as ROLLBACK TO sav_point;
+- DDL (CREATE, ALTER, DROP) → auto commit
+- DML (INSERT, UPDATE, DELETE) → manual commit
 ```sql
 CREATE OR REPLACE PROCEDURE get_salary (
   p_emp_id IN NUMBER,
