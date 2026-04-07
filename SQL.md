@@ -215,6 +215,9 @@ END;
     - Syntax: DECLARE → OPEN → FETCH → LOOP → DML → EXCEPTION → EXIT
     - *OPEN*: Executes query and loads result into memory
     - *CLOSE*: Releases memory. 
+    ```mysql
+        DECLARE cur CURSOR FOR SELECT col1, col2 FROM Temp;
+    ```
     ```sql
         DECLARE
             CURSOR emp_cursor IS
@@ -234,8 +237,19 @@ END;
             END LOOP;
 
             CLOSE emp_cursor;
+
+            EXCEPTION
+            WHEN OTHERS THEN
+                -- Ensure cursor is closed if an error occurs
+                IF emp_cursor%ISOPEN THEN
+                    CLOSE emp_cursor;
+                END IF;
+
+            DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
         END;
     ```
+---------------------
+---------------------
 
 29. **What Bulk Collect?**
 - Cursor: process data row by row
@@ -259,3 +273,139 @@ END;
         END LOOP;
         END;
     ```
+
+30. **Your Procedure is running slow now. How we can fix this?**
+- First check the Explain Query Plan.
+- Then check the full table scans. 
+- Check if index is present or not on the table. 
+- Check JOINs in query.
+- Check after which JOINs data is multiplying. Check is it really required or correct.
+- For data mismatch → test small blocks of logic
+- “Fix hash → nested” → performance tuning decision
+    - Hash Join → large data, no index
+    - Nested Loop → small data, index exists
+    - It means overriding the optimizer’s choice of a hash join and forcing a nested loop join, usually for better performance when dealing with smaller datasets or indexed columns.
+
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+31. **Different JOINs in SQL?**
+- INNER JOIN: Return only exact matches from both the table.
+- LEFT JOIN: All rows from LEFT Table. Matching rows from RIGHT Table, otherwise, NULL.
+- RIGHT JOIN: All rows from RIGHT Table. Matching rows from LEFT Table, otherwise, NULL.
+- FULL OUTER JOIN: All rows from BOTH the tables. Matches where possible. NULL where no match.
+- CROSS JOIN: Every row from table A joins with every row from table B. 
+    ```sql
+        SELECT e.emp_name, d.dept_name
+        FROM emp e
+        CROSS JOIN dept d;
+        -- 3 employees × 4 departments → 12 rows
+    ```
+- SELF JOIN: Same table join with itself.
+    ```sql
+    SELECT e.emp_name, m.emp_name AS manager
+    FROM emp e
+    JOIN emp m
+    ON e.manager_id = m.emp_id;
+    ```
+
+32. **Sessions in PL/SQL?**
+-  Sessions store user context, variables, cursor states during code execution.
+
+33. **Functions vs Procedures**
+- *Functions* are just like other programming language. You can use it whenever you required. 
+- There must be return value present. 
+- We can use it in SQL Statement. 
+- *Procedure* are for performing some set of actions. Return data should be optional.
+- You have to call the Procedure. 
+
+34. **Calling a Store Procedure.**
+```sql
+CREATE OR REPLACE PROCEDURE get_salary (
+  p_emp_id IN NUMBER,
+  p_salary OUT NUMBER
+) AS
+BEGIN
+  SELECT salary INTO p_salary
+  FROM employees
+  WHERE emp_id = p_emp_id;
+END;
+
+-- calling SP
+DECLARE
+  v_salary NUMBER;
+BEGIN
+  get_salary(101, v_salary);
+  DBMS_OUTPUT.PUT_LINE(v_salary);
+END;
+/
+```
+# Sample Store Procedure
+```sql
+CREATE OR REPLACE PROCEDURE process_employees (
+    p_dept_id     IN NUMBER,
+    p_increment   IN NUMBER,
+    p_count       OUT NUMBER
+)
+IS
+    -- Variables
+    v_total_count NUMBER := 0;
+
+    -- Record type
+    TYPE emp_rec IS RECORD (
+        emp_id   employees.emp_id%TYPE,
+        salary   employees.salary%TYPE
+    );
+
+    -- Collection type
+    TYPE emp_table IS TABLE OF emp_rec;
+    v_emps emp_table;
+
+    -- Cursor
+    CURSOR emp_cursor IS
+        SELECT emp_id, salary
+        FROM employees
+        WHERE department_id = p_dept_id;
+
+BEGIN
+    -- BULK COLLECT
+    OPEN emp_cursor;
+    LOOP
+        FETCH emp_cursor BULK COLLECT INTO v_emps LIMIT 100;
+        EXIT WHEN v_emps.COUNT = 0;
+
+        -- Loop through collection
+        FOR i IN 1 .. v_emps.COUNT LOOP
+            -- Update salary
+            UPDATE employees
+            SET salary = salary + p_increment
+            WHERE emp_id = v_emps(i).emp_id;
+
+            v_total_count := v_total_count + 1;
+        END LOOP;
+
+    END LOOP;
+
+    CLOSE emp_cursor;
+
+    -- Assign OUT parameter
+    p_count := v_total_count;
+
+    -- Commit changes
+    COMMIT;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found');
+
+    WHEN TOO_MANY_ROWS THEN
+        DBMS_OUTPUT.PUT_LINE('Unexpected multiple rows');
+
+    WHEN OTHERS THEN
+        -- Rollback in case of error
+        ROLLBACK;
+
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+/
+```
