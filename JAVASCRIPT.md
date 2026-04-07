@@ -376,7 +376,33 @@ async function handlePromise2() {
 --------------------------------------------------
 --------------------------------------------------
 9. **What is call, bind and apply in JavaScript?**
-- 
+- These are the methods that allow you to control the context (this value) in which a function is executed. 
+1) *call*: The call() method invokes a function immediately, allowing you to specify the value of this and pass arguments individually (comma-separated).
+2) *apply*: The apply() method is similar to call(), but it takes the function arguments as an array (or array-like object) instead of individual arguments.
+3) *bind*: The bind() method creates a new function with a specific this value and, optionally, preset initial arguments. Unlike call and apply, bind does not immediately invoke the function; instead, it returns a new function that you can call later.
+```javascript
+  var employee1 = { firstName: "John", lastName: "Rodson" };
+  var employee2 = { firstName: "Jimmy", lastName: "Baily" };
+
+  function invite(greeting1, greeting2) {
+    console.log(
+      greeting1 + " " + this.firstName + " " + this.lastName + ", " + greeting2
+    );
+  }
+
+  invite.call(employee1, "Hello", "How are you?"); // Hello John Rodson, How are you?
+  invite.call(employee2, "Hello", "How are you?"); // Hello Jimmy Baily, How are you?
+
+  invite.apply(employee1, ["Hello", "How are you?"]); // Hello John Rodson, How are you?
+  invite.apply(employee2, ["Hello", "How are you?"]); // Hello Jimmy Baily, How are you?
+
+  var inviteEmployee1 = invite.bind(employee1);
+  var inviteEmployee2 = invite.bind(employee2);
+
+  inviteEmployee1("Hello", "How are you?"); // Hello John Rodson, How are you?
+  inviteEmployee2("Hello", "How are you?"); // Hello Jimmy Baily, How are you?
+
+```
 
 --------------------------------------------------
 --------------------------------------------------
