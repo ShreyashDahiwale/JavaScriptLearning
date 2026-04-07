@@ -148,6 +148,7 @@ END;
     ```
     
 ------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 19. **For what purpose is a CTE (Common Table Expression) used?**
 - A CTE is a temporary result set defined by using WITH. It is generally used to clarify complex queries and make them more readable.
@@ -183,3 +184,55 @@ END;
 - NULLIF(expression1, expression2)
 - This function returns true if two specified expressions are equal, otherwise, it returns the first expression.
 
+------------------------------------------------------------------
+------------------------------------------------------------------
+
+28. **What cursor in PL/SQL?**
+- A cursor is a pointer to a memory location where SQL query data is stored. 
+- A cursor allow us to process query result row by row instead of all at once.
+- Using this:
+    - We can apply logic per row.
+    - Performing Calculations.
+    - Looping through results.
+- Types of Cursors:
+    1) ***Implicit Cursor(Automatic)***
+    - Created automatically by Oracle for SELECT INTO, DELETE, UPDATE, INSERT
+    - Cursor attributes: SQL%FOUND, SQL%NOTFOUND, SQL%ROWCOUNT, SQL%ISOPEN
+    - It is used for Single Row.
+    - SQL%NOTFOUND returns true when no more records to fetch. 
+    ```sql
+        DECLARE
+            v_name employees.name%TYPE;
+        BEGIN
+            SELECT name INTO v_name
+            FROM employees
+            WHERE id = 1;
+        END;
+    ```
+
+    2) ***Explicit Cursor (Manual)***
+    - Used to store the result of an query which returns more than one row.
+    - Syntax: DECLARE → OPEN → FETCH → LOOP → DML → EXCEPTION → EXIT
+    - *OPEN*: Executes query and loads result into memory
+    - *CLOSE*: Releases memory. 
+    ```sql
+        DECLARE
+            CURSOR emp_cursor IS
+            SELECT name, salary FROM employees;
+
+            v_name employees.name%TYPE;
+            v_salary employees.salary%TYPE;
+
+        BEGIN
+            OPEN emp_cursor;
+
+            LOOP
+                FETCH emp_cursor INTO v_name, v_salary;
+                EXIT WHEN emp_cursor%NOTFOUND;
+
+                DBMS_OUTPUT.PUT_LINE(v_name || ' - ' || v_salary);
+            END LOOP;
+
+            CLOSE emp_cursor;
+        END;
+    ```
