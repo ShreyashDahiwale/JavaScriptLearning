@@ -390,6 +390,10 @@ demoPromise();
     - This is very important to note that this interval does not give the gurantee which the callback runs exactly at that time because js is a single threaded and we don't know how much time the synchronous task will take to execute.
 -------------------------------------------------------
 -------------------------------------------------------
+21. Difference between Package.json and package-lock.json?
+- 
+-------------------------------------------------------
+-------------------------------------------------------
 All types of statuscodes
 JavaScript functionality
 Aggregation and Pipelines in MongoDB
