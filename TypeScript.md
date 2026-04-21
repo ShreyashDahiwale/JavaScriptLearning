@@ -22,6 +22,7 @@ if (typeof valueUnknown === "string") {
 
 2. **Type Narrowing**
 - Type Narrowing is a TypeScript feature that refines the broader data type (like union string | number) into a more specific type i.e. just number or string, within a conditional block. 
+- Call, construct and access properties
 - It uses a runtime checks, called type guards 
 - typeof, instanceof, equality checks
 - *typeof* checks the type of an variable
