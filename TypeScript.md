@@ -19,3 +19,32 @@ if (typeof valueUnknown === "string") {
     valueUnknown.toUpperCase(); // OK: narrowed to string
 }
 ```
+
+2. **Type Narrowing**
+- Type Narrowing is a TypeScript feature that refines the broader data type (like union string | number) into a more specific type i.e. just number or string, within a conditional block. 
+- It uses a runtime checks, called type guards 
+- typeof, instanceof, equality checks
+- *typeof* checks the type of an variable
+- *instanceof*: checks whether an object is an instace of a particular class or constructor function. It only works with classes and constructor functions
+- Type Narrowing is something comes under the best practices of coding. 
+```typescript
+    class Animal {
+    move() {
+        console.log("Moving…");
+    }
+    }
+    class Bird extends Animal {
+        fly() {
+            console.log("Flying…");
+        }
+    }
+    function moveAnimal(animal: Animal): void {
+        if (animal instanceof Bird) {
+            // Inside this block, animal is narrowed to a Bird
+            animal.fly();
+        } else {
+            // Inside this block, animal is still an Animal
+            animal.move();
+        }
+    }
+```
