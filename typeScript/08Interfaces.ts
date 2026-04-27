@@ -45,3 +45,35 @@ interface TeaRecipe1 {
     water: number;
     milk: number
 }
+
+
+type TeaType = "Masala" | "Ginger" | "Lemon";
+
+function orderChai(t: TeaType) {
+    console.log(t);
+}
+
+type BaseChai = {teaLeaves: number}
+type Extra = {masala: number}
+
+type cup: MasalaChai = {
+    teaLeaves: 2,
+    masala: 1
+}
+
+type user = {
+    username: string;
+    bio?: string;
+}
+
+type Config = {
+    readonly apiKey: string;
+    timeout: number;
+}
+
+const cfg: Config = {
+    apiKey: "12345",
+    timeout: 5000
+}
+
+// cfg.apiKey = "67890"; // Error: Cannot assign to 'apiKey' because it is a read-only property.
