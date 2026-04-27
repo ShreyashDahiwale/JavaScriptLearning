@@ -49,3 +49,40 @@ kill - kill process
 free -h = free storage
 nohup = it used to write some logs 
 vmstat = gives information about RAM
+
+------------------------------------------------------------------
+# System Level Commands
+- uname = shows you which system is running
+- uptime = shows you how much time system is up
+- date = 
+- who = who logged in to the system, how much users logged in, etc
+- whoami = current system logged in user
+- which = gives us the location of particular (which python => location from where python is executing)
+- id = id shows you user id, group id
+- sudo = super user do (root user with all the persmission). It is a group
+- shutdown = system will shutdown (sudo shutdown)
+- reboot = restart the system
+- apt = application commandline manager is for Ubuntu
+    - sudo apt-get install nodejs npm = will install nodejs and npm
+- yum = app package manager (CentOS)
+- dnf = (Fedora)
+- pacman = 
+
+-----------------------------------------------------------------------
+# User & Group Management Commands
+
+<!-- ssh -i "ssh-client-key.pem" ubuntu@ec2-51-20-53-50.eu-north-1.compute.amazonaws.com -->
+
+- useradd -m myownuser = add new user 
+- passwd = to add password to the user
+- su username = swith user
+- cat /etc/passwd
+- userdel username = remove user
+- you can group the users in different categories of groups
+- groupadd groupname = creation of group
+- sudo gpasswd -a username groupname
+- sudo gpasswd -M username, username, ... groupname
+- groupdel = delete group
+
+--------------------------------------------------------------------------
+# File Permission Commands
