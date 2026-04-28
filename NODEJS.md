@@ -394,10 +394,127 @@ demoPromise();
 - 
 -------------------------------------------------------
 -------------------------------------------------------
+22. What is the Difference Between the Cluster Thread and Worker Thread?
+- *Worker Thread*: It allows us to run the asynchronous tasks in parallel with the Main Thread without blocking the execution of the Main thread.
+- They also able to share the memory by transferring ArrayBuffer instances.
+- *Clusters*: Clusters of Node.js processes can be used to run multiple instances of Node.js that can distribute workloads among their application threads. 
+- This module provides a way to create multiple worker processes that share the same server port. fork().
+---------------------------------------------------------
+---------------------------------------------------------
+23. What is Node.js Process Model?
+- Node.js runs on a single process and the application code runs in a single thread and this is the way it uses less resources than other platforms.
+- All the request from the web application will be handled by the single thread and all the blocking operation is peformed asynchronously for a particular request.
+- While processing a request, Node.js attaches a callback function to it and moves it to the back-end. Now, whenever its response is ready, an event is called which triggers the associated callback function to send this response. 
+
+---------------------------------------------------------
+---------------------------------------------------------
+24. How V8 Engine Compiles JS Code?
+- Interpreter - line by line
+- Compiler = Entire document to byte code.
+- V8 Engine uses both compiler and interpreter and follows just-in-time (JIT) compilation to speed up the execution.
+
+---------------------------------------------------------
+---------------------------------------------------------
+25. What is the difference between process.nextTick() and setImmediate()?
+1) process.nextTick()
+- The process.nextTick() method adds the callback function to the start of the next event queue. It is to be noted that, at the start of the program process.nextTick() method is called for the first time before the event loop is processed.
+- It somewhat gives gurantee that the code will execute.
+2) setImmediate()
+- The setImmediate() method is used to execute a function right after the current event loop finishes. It is callback function is placed in the check phase of the next event queue.
+
+```javascript
+/**
+ * setImmediate() and process.nextTick()
+ */
+setImmediate(() => {
+  console.log("1st Immediate");
+});
+
+setImmediate(() => {
+  console.log("2nd Immediate");
+});
+
+process.nextTick(() => {
+  console.log("1st Process");
+});
+
+process.nextTick(() => {
+  console.log("2nd Process");
+});
+
+// First event queue ends here
+console.log("Program Started");
+
+// Output
+Program Started
+1st Process
+2nd Process
+1st Immediate
+2nd Immediate
+```
+
+---------------------------------------------------------
+---------------------------------------------------------
+26. What is callback function?
+- A callback function which is called when a task is completed.
+- This helps us to prevent any blocking of call stack and allows other code to run in the meantime.
+
+---------------------------------------------------------
+---------------------------------------------------------
+27. What is the difference between Events and Callback?
+- Node.js event module which emits named events that can cause corresponding functions or callback to be called.
+- Functions listes or subscribed to a particular event to occur and when that event triggers, all the callbacks subscribed to that event are fired one by one in order to which they are registered. 
+- All objects that emit events are the instances of EventEmitter class. 
+```javascript
+/**
+ * Events Module
+ */
+const event = require('events');  
+const eventEmitter = new event.EventEmitter();  
+  
+// add listener function for Sum event  
+eventEmitter.on('Sum', function(num1, num2) {  
+    console.log('Total: ' + (num1 + num2));  
+});  
+
+// call event  
+eventEmitter.emit('Sum', 10, 20);
+
+// Output
+Total: 30
+```
+
+- *callback*: A function that is passed to another function as an argument, which is invoked inside that function once some action or condition is met.
+- Promises are the alternatives to deal with the callback.
+- Another way is using async/await.
+
+- Callback functions are called when an asynchronous function returns its result, whereas event handling works on the observer pattern. 
+- The functions that listen to events act as Observers. Whenever an event gets fired, its listener function starts executing. Node.js has multiple in-built events available through events module and EventEmitter class which are used to bind events and event-listeners
+---------------------------------------------------------
+---------------------------------------------------------
+28. What are the middleware functions in Node.js?
+- Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application's request-response cycle.
+- If the current middleware function does not end the request-response cycle, it must call next() to pass control to the next middleware function. Otherwise, the request will be left hanging.
+- Authentication/Authorization: Verifying user credentials (tokens) before allowing access to a route.
+- Request Parsing/Validation: Processing incoming JSON or form data from a request body.
+- API Gateway/Routing: Directing API requests to specific backend services.
+- Compression/Optimization: Reducing the size of the response sent to the client.
+---------------------------------------------------------
+---------------------------------------------------------
+29. What is the difference between Asynchronous and Non-blocking?
+1) *Asynchronous*
+The architecture of asynchronous explains that the message sent will not give the reply on immediate basis just like we send the mail but do not get the reply on an immediate basis. It does not have any dependency or order. Hence improving the system efficiency and performance. The server stores the information and when the action is done it will be notified.
+
+2) *Non-Blocking*
+Nonblocking immediately responses with whatever data available. Moreover, it does not block any execution and keeps on running as per the requests. If an answer could not be retrieved then in those cases API returns immediately with an error. Nonblocking is mostly used with I/O(input/output). Node.js is itself based on nonblocking I/O model. There are few ways of communication that a nonblocking I/O has completed. The callback function is to be called when the operation is completed. Nonblocking call uses the help of javascript which provides a callback function.
+
+---------------------------------------------------------
+---------------------------------------------------------
 All types of statuscodes
 JavaScript functionality
 Aggregation and Pipelines in MongoDB
 When to use Mongo and when to use MySQL
+
 state and props 
 lifting state up in React
 Proper introduction in Interview
