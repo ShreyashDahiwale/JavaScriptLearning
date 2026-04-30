@@ -394,19 +394,23 @@ demoPromise();
 - 
 -------------------------------------------------------
 -------------------------------------------------------
-All types of statuscodes
-JavaScript functionality
-Aggregation and Pipelines in MongoDB
-When to use Mongo and when to use MySQL
-state and props 
-lifting state up in React
-Proper introduction in Interview
-List Virtulaization?
-Error Boundries?
-Why to use Node.js as backend?
-What is Hooks?
-What is service thread?
-How do you handle errors in Node.js Application?
-What is useMemo and React.Memo?
-What is memoization and what is useCallback?
-How do you optimize the list dropdown in react?
+- All types of statuscodes
+- JavaScript functionality
+- Aggregation and Pipelines in MongoDB
+- When to use Mongo and when to use MySQL
+- state and props 
+- lifting state up in React
+- Proper introduction in Interview
+- List Virtulaization?
+- Error Boundries?
+- Why to use Node.js as backend?
+- What is Hooks?
+- What is service thread?
+- How do you handle errors in Node.js Application?
+- What is useMemo and React.Memo?
+- What is memoization and what is useCallback?
+- How do you optimize the list dropdown in react?
+- How will you optimize the react code?
+- How you handle the production error in React application?
+- What are design patterns in JavaScript?
+
