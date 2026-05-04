@@ -303,7 +303,8 @@ Promise.any([p1, p2, p3])
 -----------------------------------------
 8. **Async/Await**
 1) What is async?
-- asynch function *always return a promise*.
+- async function *always return a promise*.
+- async is used to prevent the blocking of main thread during long-running tasks.
 - If you don't return a promise from it, if you return a value, then this function will automatically wrap the value into the promise.
 ```javascript
 async function getdata() {
@@ -317,6 +318,7 @@ dataPromise.then(res => console.log(res));
 ```
 2) What is await?
 - async and await combo is used to handle promises.
+- await is used to pause the execution till the promise get resolved, making asynchronous code read synchronously
 - you have to use the word await infront of Promise. And it will resolve the Promise.
 - await can only be used inside async function.
 ```javascript
