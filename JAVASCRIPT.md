@@ -476,3 +476,52 @@ async function handlePromise2() {
     | It is the root level element in any web page      | It is the direct child of the window object. This is also known as Document Object Model (DOM) |
     | By default window object is available implicitly in the page                  | You can access it via window.document or document.                                             |
     | It has methods like alert(), confirm() and properties like document, location | It provides methods like getElementById, getElementsByTagName, createElement etc               |
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+13. **What is Shallow Copy and Deep Copy?**
+- *Shallow Copy*: Shares references with the original. A shallow copy is mainly a reference variable that stores the address of the object it is copied from.
+  * Methods to create Shallow Copy: 
+  - Spread Operator: { ...obj }
+  - Object.assign(): Object.assign({}, obj)
+  - Array.prototype.slice(): For arrays: array.slice()
+
+- *Deep Copy*: A deep copy creates a complete, independent clone of an object or array, including all nested structures. Changes to the copy do not affect the original object.
+  * Methods to create Deep Copy: 
+  - JSON.parse(JSON.stringify())
+  - structuredClone to create deep copies efficiently. It supports circular references and complex types.
+
+```javascript
+    // Shallow copy
+    const original = { a: 1, nested: { b: 2 } };
+    const shallow = { ...original };
+    shallow.nested.b = 99; 
+    console.log(original.nested.b); // 99 (Original is mutated!)
+
+    // Deep copy
+    const originalDeep = { a: 1, nested: { b: 2 } };
+    const deep = structuredClone(originalDeep);
+    deep.nested.b = 99;
+    console.log(originalDeep.nested.b); // 2 (Original is safe!)
+
+    const original = { name: 'Bob', details: { age: 28 } };
+    const deepCopy = JSON.parse(JSON.stringify(original));
+
+    deepCopy.details.age = 35;
+    console.log(original.details.age); // Outputs: 28
+```
+
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+14. **What is memory leaks?**
+- A memory leak can be defined as a memory location that is no longer in used or required by the application but for some reason the memory is not free. 
+  * Types of common JavaScript memory leaks.
+  1) Undeclared/Global Variables
+    - For undeclared variables, JS creates a new variable inside the global object. "window"
+  2) Forgotten timers or callbacks
+    - If setTimeout and setInterval referencing some object in the callback is the most common way to prevent the object from garbage collected. 
+  3) Out of DOM references (Event Listeners)
+  4) Closures
+    - The closure will keep the variables referenced and alive although the function has finished executing and its execution context and variable environment are long gone.
