@@ -525,3 +525,39 @@ async function handlePromise2() {
   3) Out of DOM references (Event Listeners)
   4) Closures
     - The closure will keep the variables referenced and alive although the function has finished executing and its execution context and variable environment are long gone.
+
+    
+---------------------------------------------------------------------
+---------------------------------------------------------------------
+
+15. **What is Prototype Inheritance in JavaScript?**
+- In JS, all functions are also objects, which means that they can have properties. 
+- And as it so happens, they all have a property called *prototype*, which is also an object. 
+```javascript
+  function func(){}
+  
+  typeof func.prototype // 'object'
+```
+- Anytime you create a function, it will automatically have a property called prototype, which will be initialized to an empty object. 
+
+1) ***Constructor***
+- In JS, there's really no difference between 'regular' function and a constructor function. They're actually all the same. 
+- But as a convention, functions that are meant to be used as constructors are generally capitalized. 
+```javascript
+function Dog() {
+}
+Dog.prototype.bark = function() {
+ console.log(‘woof!’);
+};
+var fido = new Dog();
+fido.bark(); // ‘woof!’
+```
+
+2) ***Differential Inheritance***
+- JavaScript uses an inheritance model called "differential inheritance". 
+- It means that methods aren't copied from parent to child. Instead, children have an "invisible link" back to their parent object. 
+- For example, fido doesn’t actually have its own method called bark() (in other words, fido.hasOwnProperty(‘bark’) === false).
+- What actually happens when I write fido.bark() is this:
+  1. The JS engine looks for a property called bark on our fido object.
+  2. It doesn’t find one, so it looks “up the prototype chain” to fido’s parent, which is Dog.prototype.
+  3. It finds Dog.prototype.bark, and calls it with this bound to fido.
