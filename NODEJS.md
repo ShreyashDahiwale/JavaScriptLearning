@@ -122,7 +122,7 @@ https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick
 --------------------------------------------------------------------
 --------------------------------------------------------------------
 
-14. **What is MicroTask and MacroTask?**
+14. **What is MicroTask and MacroTask (Callback Queue)?**
 - *Event Loop*: An Event Loop in JavaScript is said to be a constantly running process that keeps a tab on the call stack. Its main function is to check whether the call stack is empty or not. If the call stack turns out to be empty, the event loop proceeds to execute all the callbacks waiting in the task queue. Inside the task queue, the tasks are broadly classified into two categories, namely micro-tasks and macro-tasks.
 - The main difference between Micro Task and Macro Task Queue is their priority. 
 - *Micro Task* with Higher Priority.
@@ -507,6 +507,13 @@ The architecture of asynchronous explains that the message sent will not give th
 
 2) *Non-Blocking*
 Nonblocking immediately responses with whatever data available. Moreover, it does not block any execution and keeps on running as per the requests. If an answer could not be retrieved then in those cases API returns immediately with an error. Nonblocking is mostly used with I/O(input/output). Node.js is itself based on nonblocking I/O model. There are few ways of communication that a nonblocking I/O has completed. The callback function is to be called when the operation is completed. Nonblocking call uses the help of javascript which provides a callback function.
+
+---------------------------------------------------------
+---------------------------------------------------------
+30. What is the difference between streaming and buffering?
+- *Streaming*: It is the continuous transferring of media from server to device, allowing us to watch or listen real-time without downloading the entire file. 
+- *Buffering*: It is the supporting process that pre-loads short segments of that stream into a temporary memory area to playback stays smooth. 
+- Think of streaming as water flowing continuously through a hose, while the buffer is a small bucket catching the water just before you use it.
 
 ---------------------------------------------------------
 ---------------------------------------------------------
