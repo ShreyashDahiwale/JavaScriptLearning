@@ -537,4 +537,6 @@ Nonblocking immediately responses with whatever data available. Moreover, it doe
 - How will you optimize the react code?
 - How you handle the production error in React application?
 - What are design patterns in JavaScript?
-
+- Circluar Promises in Node.js?
+- What is hooks?
+- useState and useRef
