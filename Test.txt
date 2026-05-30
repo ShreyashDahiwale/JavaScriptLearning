@@ -1,0 +1,61 @@
+Rewrite the following notes in clear, formal, and academically appropriate legal language suitable for university law students aged 18–21.
+
+Formatting Requirements:
+- Font: Times New Roman
+- Font Size: 12
+- Line Spacing: 1.5
+- Alignment: Justified
+- Main headings and subheadings must be in CAPITAL LETTERS and BOLD
+- Remove unnecessary blank spaces between headings, subheadings, and paragraphs
+- Maintain clean and professional formatting suitable for academic submission and exam preparation
+
+Content Instructions:
+- Maintain accuracy of all legal concepts, provisions, case laws, and principles.
+- Use simple and understandable English without oversimplifying legal meaning.
+- Avoid robotic, repetitive, or AI-generated sounding phrases.
+- Do not use overly decorative vocabulary or unnecessary jargon.
+- Ensure the writing feels natural, human-written, and suitable for exam preparation.
+- Improve sentence structure, grammar, clarity, and flow.
+- Present the content in a well-organized format using headings, subheadings, bullet points, and short paragraphs wherever appropriate.
+- Preserve all important legal terminology and statutory references.
+- If any sentence is vague or poorly drafted, rewrite it for clarity while keeping the original meaning intact.
+- Keep the tone professional, student-friendly, and legally precise.
+- Do not add unnecessary information beyond the provided notes unless required for clarity.
+
+Output Requirements:
+- Use concise and coherent legal writing.
+- Make the notes easy to revise before exams.
+- Ensure the final version reads like high-quality university notes prepared by a serious law student. 
+- Provide answer in detail 
+- Provide citation for the case laws discussed in the document.
+
+
+------------------------------------------------------------------------------------
+
+Consider yourself to be a senior law professor teaching students preparing for Judicial Services Examinations who require quick and effective revision material. Your task is to prepare concise revision notes on 
+section 1 to 7, section 8 to 14, section 15, section 16 to 22, section 23- 24, section 25 - 32, section 33- 38, section 39- 52, section 53- 60.
+of the Maharashtra Rent Control Act, 1999.
+
+Content Instructions:
+• Cover every section and relevant sub-section.
+• Each section must be explained in 2–3 concise sentences or within a maximum of 5–6 lines.
+• Each sub-section must be explained within a maximum of 3–4 lines.
+• Include all important legal keywords, essentials, ingredients, provisos, explanations, exceptions, and concepts without compromising the actual content and meaning of the provision.
+• Use precise, exam-oriented legal language that is simple, professional, and easy for Judicial Services aspirants to revise quickly.
+• Notes should be crisp, well-structured, and legally accurate.
+• Do not add unnecessary commentary, case laws, illustrations, or extra explanations beyond the Bare Act unless absolutely necessary for clarity.
+• Ensure the final document is concise and completed within a minimum of 1–2 pages and a maximum of 3–4 pages.
+
+Formatting Instructions:
+• Output must be in Word document format.
+• Font: Calibri
+• Font Size: 14
+• Line Spacing: 1.5
+• Black-and-white format only.
+• No highlights, colours, borders, graphics, or tables.
+• Use proper headings and sub-headings.
+• Maintain clean spacing and professional formatting throughout the document.
+• Language must remain clear, concise, legally accurate, and suitable for quick judicial exam revision.
+• Ensure all headings and sub-headings are properly distinguished and consistently formatted.
+
+Create different document for different set of sections like section 1 to 7 then another document of section 8 to 14
