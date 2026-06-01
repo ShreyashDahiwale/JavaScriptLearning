@@ -517,6 +517,18 @@ Nonblocking immediately responses with whatever data available. Moreover, it doe
 
 ---------------------------------------------------------
 ---------------------------------------------------------
+31. **What is the difference between CommonJS and ModuleJS?**
+- Module is a self contained unit of code that gives us some of the functionality to work with. 
+- CommonJS Modules (Traditional Method)
+- ECMAScript Modules (Newer Version)
+- In CommonJS module: use a require() to load a module and module.exports or exports to expose functionality.
+- In ECMAScript Modules: We use export and import keywords.
+- Module loading in CommonJS is synchronous. Because module loading is synchronous, it can block the main thread of execution and cause delays if the modules being loaded are large.
+- Module loading in ES Module is asynchronous by default. The asynchronous loading of ES modules can improve the performance of your code by allowing other code to continue executing while the module is being loaded.
+
+
+---------------------------------------------------------
+---------------------------------------------------------
 - All types of statuscodes
 - JavaScript functionality
 - Aggregation and Pipelines in MongoDB
