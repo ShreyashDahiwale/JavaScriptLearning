@@ -1,11 +1,16 @@
 https://github.com/sudheerj/reactjs-interview-questions?tab=readme-ov-file#what-is-react
 
+https://medium.com/@jaydeepvpatil225/introduction-of-react-hooks-with-examples-b64569e02f77
+
 Source for Interview Questions of React.js
 
 # What are hooks?
 - Hooks are the functions in React that let you use state and other React features without writing a class. 
 - Hooks allows functional components to manage state and lifecycle events, which were previously only possible in class components. 
-- 
+- There are 3 rules for hooks:
+  - Hooks can only be called inside React functional components.
+  - Hooks can only be called at the top level of a component.
+  - Hooks cannot be conditional.
 
 
 # What is the difference between Functional Component and Class Component in React?
@@ -28,6 +33,7 @@ function WelcomeMessage(props) {
 
 # useState Hook
 - Allows to add state to the Functional Components.
+- The React useState Hook allows us to track state in a Functional Component.
 ```javascript
 import React, { useState } from 'react';
 
@@ -205,3 +211,54 @@ export default UseReducerDemo;
 - Centralized State Management: The reducer function manages all state changes in one place, making the logic easy to follow and maintain.
 - Scalability: As the state management logic grows more complex, useReducer can handle it more gracefully than useState would with multiple state variables.
 - Readability: By using actions, the intent of each state change is clearly communicated, improving the readability of the code.
+
+# useContext
+- Allows you to access context values in a functional component.
+
+
+# useMemo 
+- Memorizes a value, re-computing it only when its dependencies change.
+```javascript
+import React, { useState, useMemo } from 'react';
+
+// Expensive calculation function
+const calculateFactorial = (num) => {
+  console.log('Calculating factorial...');
+  let result = 1;
+  for (let i = 1; i <= num; i++) {
+    result *= i;
+  }
+  return result;
+};
+
+const UseMemoDemo = () => {
+  const [count, setCount] = useState(0);
+  const [number, setNumber] = useState(1);
+
+  // Memoized factorial calculation
+  const factorial = useMemo(() => calculateFactorial(number), [number]);
+
+  return (
+    <div>
+      <h1>UseMemo Demo</h1>
+      <div>
+        <h2>Counter: {count}</h2>
+        <button onClick={() => setCount(count + 1)}>Increment Counter</button>
+      </div>
+      <div>
+        <h2>Factorial of {number}: {factorial}</h2>
+        <input
+          type="number"
+          value={number}
+          onChange={(e) => setNumber(Number(e.target.value))}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default UseMemoDemo;
+```
+- useMemo is used to memoize the result of calculateFactorial(number).
+- The calculation is only re-executed when the number value changes. If number stays the same, the cached result is returned, avoiding unnecessary recalculations.
+- Performance Optimization: By memoizing the factorial calculation, the component avoids unnecessary recomputation, improving performance, especially when dealing with large numbers or complex calculations.
