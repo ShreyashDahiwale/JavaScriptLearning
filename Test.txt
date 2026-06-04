@@ -59,3 +59,110 @@ Formatting Instructions:
 • Ensure all headings and sub-headings are properly distinguished and consistently formatted.
 
 Create different document for different set of sections like section 1 to 7 then another document of section 8 to 14
+
+------------------------------------------------------------------------------
+You will be given a multi-module Word document (.docx) containing legal/academic content — modules, chapters, section headings, body text, lists, and case summaries. Your task is to reformat the entire document for consistent, clean presentation by applying the style specification below and removing all whitespace irregularities.
+PAGE SETUP
+
+Paper size: A4 (8.27" × 11.69")
+Margins: 1 inch on all four sides
+Layout: Single column, single section throughout
+No manual page breaks between chapters or sections
+No header or footer of any kind — remove entirely from all sections
+
+TYPOGRAPHY
+
+Body text: Calibri, 14 pt, Black, Regular
+Heading 1 (module/chapter title and all section headings): Calibri, 20 pt, Dark blue (#0F4761), Bold
+List items: Calibri, 14 pt, Black, Regular
+Bold emphasis within body: Calibri, 14 pt, Black, Bold
+Use no other fonts anywhere in the document
+Do not use italic, underline, or strikethrough unless the source material requires it for a citation or legal term
+Line spacing: single (1.0) for all paragraph styles
+No space-before or space-after on body paragraphs and list items (set both to 0 pt)
+Heading 1 only: 18 pt space-before, 4 pt space-after — no extra blank paragraphs around headings
+
+PARAGRAPH STYLES — apply exactly these three styles throughout:
+
+Heading1 — for module titles, chapter titles, and all section/sub-section headings
+
+
+Every heading in the document, regardless of hierarchical level, uses Heading 1
+keepNext and keepLines enabled (heading never orphaned at page bottom)
+Left-aligned; no first-line indent
+
+
+BodyText — for all prose paragraphs
+
+
+Based on Normal
+Left indent: 371 DXA (~0.26 inches) from left margin
+No first-line indent
+No space-after (0 pt)
+
+
+ListParagraph — for all bulleted and numbered list items
+
+
+The bullet or number is supplied by the list numbering definition, never typed manually
+Left indent consistent with list numbering hanging indent
+No space-after (0 pt)
+
+LISTS
+
+Bulleted lists: use proper BULLET list format (•), with 280 DXA left indent and 280 DXA hanging indent. Never manually type •, – or - as a character
+Numbered lists: use DECIMAL format (1., 2., 3.), same indent measurements
+Each logically distinct list restarts numbering from 1
+No blank paragraphs before or after a list block
+
+WHITESPACE AND BLANK PAGE RULES — apply strictly across the entire document:
+
+Remove all empty/blank paragraphs — delete any paragraph whose text content is empty or contains only spaces, tabs, or non-breaking spaces, regardless of style
+Remove double spaces between sentences — use single space after every full stop, colon, and comma
+Remove blank paragraphs between a heading and its first body paragraph — the first body paragraph must immediately follow its heading
+Remove blank paragraphs between a body paragraph and the next heading — only the heading's built-in space-before (18 pt) should create visual separation
+Remove blank paragraphs inside lists — list items must be contiguous
+Remove blank pages — any page that is entirely empty must be deleted
+Remove manual page breaks (Ctrl+Enter) that were inserted between sections — allow content to flow naturally
+Do not add new blank lines anywhere for visual separation — use only the heading's built-in space-before and space-after values
+
+MODULE AND CHAPTER TITLE FORMAT
+Each module and chapter begins with a Heading 1 paragraph in this pattern: Module [N] : CH : [N]
+Example: Module 1 : CH : 1
+Immediately below, the chapter subject heading also uses Heading 1. There is no blank paragraph between the module/chapter line and the subject heading — both are consecutive Heading 1 paragraphs.
+CASE SUMMARIES FORMAT
+
+Case name and citation: Heading 1, bold, on a single line
+Facts / Issues / Held / Principle: each label is a Heading 1 paragraph
+Content under each label uses ListParagraph with bullet formatting if the source has bullet points, or BodyText if it is prose
+No blank paragraphs between the case name, its labels, or its content blocks
+
+WHAT TO REMOVE OR FIX
+
+Empty paragraphs (blank lines): delete entirely
+Blank pages: delete entirely
+Manual page breaks between sections: remove
+Page numbers in footer: remove footer entirely from all sections
+Any header content: remove header entirely from all sections
+Mixed font remnants (non-Calibri): replace with Calibri 14 pt
+Inconsistent heading sizes: standardise to Heading 1 spec above
+Unicode bullets typed as characters (•, –, -): replace with proper ListParagraph + numbering
+Double spaces: replace with single space
+Extra space-before/after on body paragraphs: set to 0 pt
+Trailing spaces at end of paragraphs: remove
+
+WHAT TO PRESERVE
+
+All substantive text, exactly as written (correct only obvious double-spaces or stray characters)
+All bold emphasis already present within body paragraphs
+The flat single-level heading structure — do not introduce Heading 2 or Heading 3
+Numbered and bulleted list content and order
+Citation text, case names, statute names, and treaty names verbatim
+
+OUTPUT REQUIREMENTS
+
+Deliver a single .docx file with the above formatting applied uniformly across all modules and chapters
+The document must open cleanly in Microsoft Word and Google Docs without any missing-font warnings
+Validate that no blank pages remain and that every heading is immediately followed by content
+Confirm that headers and footers are completely absent — no page numbers, no document title, no decorative lines in any section's header or footer zones
+Do not change the document's content, order, or meaning
